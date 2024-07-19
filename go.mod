@@ -1,4 +1,4 @@
-module github.com/ozdalu/grpc-go
+module github.com/ozdalu/grpc-pos
 
 go 1.21.6
 

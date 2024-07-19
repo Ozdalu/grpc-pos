@@ -5,13 +5,14 @@ import (
 	"log"
 	"time"
 
-	protobuf "github.com/ozdalu/grpc-go/proto"
+	protobuf "github.com/Ozdalu/grpc-pos/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
 func main() {
-	connection, err := grpc.NewClient("localhost:8080", grpc.WithTransportCredentials(insecure.NewCredentials()))
+  log.Printf("Hello World")
+	/* connection, err := grpc.NewClient("localhost:8080", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("Could not connect: %v", err)
 	}
@@ -24,8 +25,8 @@ func main() {
 		log.Fatalf("SayHello Method Error: %v", err)
 	}
 
-	log.Printf("Bien reçu : %s", r.GetMessage())
+  log.Printf("Bien reçu : %s", r.GetMessage())
 
 	defer connection.Close()
-	defer CtxCancel()
+	defer CtxCancel() */
 }

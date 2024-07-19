@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	protobuf "github.com/ozdalu/grpc-go/proto"
+	protobuf "github.com/Ozdalu/grpc-pos/proto"
 	"google.golang.org/grpc"
 )
 
