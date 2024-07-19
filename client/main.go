@@ -21,10 +21,18 @@ func main() {
 	ctx, CtxCancel := context.WithTimeout(context.Background(), 30 * time.Second)
 	defer CtxCancel()
 
-	res, err := grpc_client.Register(ctx, &protobuf.Empty{})
+	registerResponse, err := grpc_client.Register(ctx, &protobuf.Empty{})
 	if err != nil {
 		log.Fatalf("Register Error: %v", err)
 	}
 
-  log.Printf("\nUuid : %v\nReputation : %d", res.GetUuid(), res.GetReputation())
+  log.Printf("\nUuid : %v\nReputation : %d", registerResponse.GetUuid(), registerResponse.GetReputation())
+  uuid := registerResponse.GetUuid()
+
+	subscribeResponse, err := grpc_client.Subscribe(ctx, &protobuf.SubscribeRequest{Uuid: uuid})
+	if err != nil {
+		log.Fatalf("Subscribe Error: %v", err)
+	}
+
+  log.Printf("\nMessage : %v", subscribeResponse.GetMessage())
 }
