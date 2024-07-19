@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	protobuf "github.com/Ozdalu/grpc-pos/proto"
+	protobuf "github.com/ozdalu/grpc-pos/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

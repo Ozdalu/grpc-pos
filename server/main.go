@@ -5,21 +5,23 @@ import (
 	"log"
 	"net"
 
-	protobuf "github.com/Ozdalu/grpc-pos/proto"
+	protobuf "github.com/ozdalu/grpc-pos/proto"
 	"google.golang.org/grpc"
 )
 
-type HelloServiceServer struct {
+/* type HelloServiceServer struct {
 	protobuf.UnimplementedHelloServiceServer
-}
+} */
 
-func (s *HelloServiceServer) SayHello(ctx context.Context, in *protobuf.InputRequest) (*protobuf.OutputRequest, error) {
+/* func (s *HelloServiceServer) SayHello(ctx context.Context, in *protobuf.InputRequest) (*protobuf.OutputRequest, error) {
 	log.Printf("Received: %v", in.GetName())
 	return &protobuf.OutputRequest{Message: "Hello " + in.GetName()}, nil
-}
+} */
 
 func main() {
-	listener, err := net.Listen("tcp", "localhost:8080")
+  log.Printf("Hello World")
+
+	/* listener, err := net.Listen("tcp", "localhost:8080")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
@@ -30,5 +32,5 @@ func main() {
 
 	if err := grpc_server.Serve(listener); err != nil {
 		log.Fatalf("failed to serve: %v", err)
-	}
+	} */
 }
