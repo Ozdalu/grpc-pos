@@ -11,22 +11,20 @@ import (
 )
 
 func main() {
-  log.Printf("Hello World")
-	/* connection, err := grpc.NewClient("localhost:8080", grpc.WithTransportCredentials(insecure.NewCredentials()))
+  connection, err := grpc.NewClient("35.241.224.46:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("Could not connect: %v", err)
 	}
+	defer connection.Close()
 
-	grpc_client := protobuf.NewHelloServiceClient(connection)
-	ctx, CtxCancel := context.WithTimeout(context.Background(), time.Second)
+	grpc_client := protobuf.NewBlockchainClient(connection)
+	ctx, CtxCancel := context.WithTimeout(context.Background(), 30 * time.Second)
+	defer CtxCancel()
 
-	r, err := grpc_client.SayHello(ctx, &protobuf.InputRequest{Name: "Toto"})
+	res, err := grpc_client.Register(ctx, &protobuf.Empty{})
 	if err != nil {
-		log.Fatalf("SayHello Method Error: %v", err)
+		log.Fatalf("Register Error: %v", err)
 	}
 
-  log.Printf("Bien reçu : %s", r.GetMessage())
-
-	defer connection.Close()
-	defer CtxCancel() */
+  log.Printf("\nUuid : %v\nReputation : %d", res.GetUuid(), res.GetReputation())
 }

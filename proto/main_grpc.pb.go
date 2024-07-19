@@ -4,7 +4,7 @@
 // - protoc             v5.27.2
 // source: proto/main.proto
 
-package grpc_pos
+package proto
 
 import (
 	context "context"
@@ -40,7 +40,7 @@ func NewBlockchainClient(cc grpc.ClientConnInterface) BlockchainClient {
 
 func (c *blockchainClient) Register(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*RegisterResponse, error) {
 	out := new(RegisterResponse)
-	err := c.cc.Invoke(ctx, "/server_rpc.Blockchain/Register", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_golang_template.Blockchain/Register", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +49,7 @@ func (c *blockchainClient) Register(ctx context.Context, in *Empty, opts ...grpc
 
 func (c *blockchainClient) Subscribe(ctx context.Context, in *SubscribeRequest, opts ...grpc.CallOption) (*SubscribeResponse, error) {
 	out := new(SubscribeResponse)
-	err := c.cc.Invoke(ctx, "/server_rpc.Blockchain/Subscribe", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_golang_template.Blockchain/Subscribe", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func (c *blockchainClient) Subscribe(ctx context.Context, in *SubscribeRequest, 
 
 func (c *blockchainClient) GetLastBlock(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BlockInfo, error) {
 	out := new(BlockInfo)
-	err := c.cc.Invoke(ctx, "/server_rpc.Blockchain/GetLastBlock", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_golang_template.Blockchain/GetLastBlock", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +67,7 @@ func (c *blockchainClient) GetLastBlock(ctx context.Context, in *Empty, opts ...
 
 func (c *blockchainClient) AddTransaction(ctx context.Context, in *Transaction, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, "/server_rpc.Blockchain/AddTransaction", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_golang_template.Blockchain/AddTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func (c *blockchainClient) AddTransaction(ctx context.Context, in *Transaction, 
 
 func (c *blockchainClient) BakeBlock(ctx context.Context, in *BakeRequest, opts ...grpc.CallOption) (*BakeResponse, error) {
 	out := new(BakeResponse)
-	err := c.cc.Invoke(ctx, "/server_rpc.Blockchain/BakeBlock", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_golang_template.Blockchain/BakeBlock", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +85,7 @@ func (c *blockchainClient) BakeBlock(ctx context.Context, in *BakeRequest, opts 
 
 func (c *blockchainClient) ConfirmBake(ctx context.Context, in *ConfirmRequest, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, "/server_rpc.Blockchain/ConfirmBake", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_golang_template.Blockchain/ConfirmBake", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func _Blockchain_Register_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/server_rpc.Blockchain/Register",
+		FullMethod: "/grpc_golang_template.Blockchain/Register",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BlockchainServer).Register(ctx, req.(*Empty))
@@ -168,7 +168,7 @@ func _Blockchain_Subscribe_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/server_rpc.Blockchain/Subscribe",
+		FullMethod: "/grpc_golang_template.Blockchain/Subscribe",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BlockchainServer).Subscribe(ctx, req.(*SubscribeRequest))
@@ -186,7 +186,7 @@ func _Blockchain_GetLastBlock_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/server_rpc.Blockchain/GetLastBlock",
+		FullMethod: "/grpc_golang_template.Blockchain/GetLastBlock",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BlockchainServer).GetLastBlock(ctx, req.(*Empty))
@@ -204,7 +204,7 @@ func _Blockchain_AddTransaction_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/server_rpc.Blockchain/AddTransaction",
+		FullMethod: "/grpc_golang_template.Blockchain/AddTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BlockchainServer).AddTransaction(ctx, req.(*Transaction))
@@ -222,7 +222,7 @@ func _Blockchain_BakeBlock_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/server_rpc.Blockchain/BakeBlock",
+		FullMethod: "/grpc_golang_template.Blockchain/BakeBlock",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BlockchainServer).BakeBlock(ctx, req.(*BakeRequest))
@@ -240,7 +240,7 @@ func _Blockchain_ConfirmBake_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/server_rpc.Blockchain/ConfirmBake",
+		FullMethod: "/grpc_golang_template.Blockchain/ConfirmBake",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BlockchainServer).ConfirmBake(ctx, req.(*ConfirmRequest))
@@ -252,7 +252,7 @@ func _Blockchain_ConfirmBake_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Blockchain_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "server_rpc.Blockchain",
+	ServiceName: "grpc_golang_template.Blockchain",
 	HandlerType: (*BlockchainServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

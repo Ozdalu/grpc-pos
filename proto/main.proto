@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package server_rpc;
-option go_package = "github.com/Ozdalu/grpc-pos";
+package grpc_golang_template;
+option go_package = "github.com/ozdalu/grpc-pos/proto";
 
 service Blockchain {
     rpc Register (Empty) returns (RegisterResponse);
@@ -53,3 +53,4 @@ message BakeResponse {
 message ConfirmRequest {
     string uuid = 1;
 }
+
