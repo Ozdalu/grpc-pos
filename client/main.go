@@ -26,7 +26,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("Register Error: %v", err)
 	}
-
   log.Printf("\nUuid : %v\nReputation : %d", registerResponse.GetUuid(), registerResponse.GetReputation())
   uuid := registerResponse.GetUuid()
 
@@ -35,7 +34,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("Subscribe Error: %v", err)
 	}
-
   log.Printf("\nMessage : %v", subscribeResponse.GetMessage())
 
 
@@ -44,7 +42,12 @@ func main() {
 	if err != nil {
 		log.Fatalf("GetLastBlock Error: %v", err)
 	}
-
   log.Printf("\nBlockInfo :\n\tHash : %v\n\tBlock Number : %d\n\tPrevious Block Hash : %v", getLastBlockResponse.GetBlockHash(), getLastBlockResponse.GetBlockNumber(), getLastBlockResponse.GetPreviousBlockHash())
 
+  //// ADD TRANSACTION
+	addTransactionResponse, err := grpc_client.AddTransaction(ctx, &protobuf.Transaction{Sender: uuid, Receiver: "7767286809234675", Amount: 0, Data: "Super je trouve"})
+	if err != nil {
+		log.Fatalf("AddTransaction Error: %v", err)
+	}
+  log.Printf("\nSuccess sending transaction %v", addTransactionResponse)
 }
