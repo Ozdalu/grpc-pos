@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "github.com/ozdalu/grpc-go";
+
+package helloworld;
+
+service HelloService {
+  rpc SayHello (InputRequest) returns (OutputRequest) {}
+}
+
+message InputRequest {
+  string name = 1;
+}
+
+message OutputRequest {
+  string message = 1;
+}
