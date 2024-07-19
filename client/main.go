@@ -21,6 +21,7 @@ func main() {
 	ctx, CtxCancel := context.WithTimeout(context.Background(), 30 * time.Second)
 	defer CtxCancel()
 
+  //// REGISTER
 	registerResponse, err := grpc_client.Register(ctx, &protobuf.Empty{})
 	if err != nil {
 		log.Fatalf("Register Error: %v", err)
@@ -29,10 +30,21 @@ func main() {
   log.Printf("\nUuid : %v\nReputation : %d", registerResponse.GetUuid(), registerResponse.GetReputation())
   uuid := registerResponse.GetUuid()
 
+  //// SUBSCRIBE
 	subscribeResponse, err := grpc_client.Subscribe(ctx, &protobuf.SubscribeRequest{Uuid: uuid})
 	if err != nil {
 		log.Fatalf("Subscribe Error: %v", err)
 	}
 
   log.Printf("\nMessage : %v", subscribeResponse.GetMessage())
+
+
+  //// GETLASTBLOCK
+	getLastBlockResponse, err := grpc_client.GetLastBlock(ctx, &protobuf.Empty{})
+	if err != nil {
+		log.Fatalf("GetLastBlock Error: %v", err)
+	}
+
+  log.Printf("\nBlockInfo :\n\tHash : %v\n\tBlock Number : %d\n\tPrevious Block Hash : %v", getLastBlockResponse.GetBlockHash(), getLastBlockResponse.GetBlockNumber(), getLastBlockResponse.GetPreviousBlockHash())
+
 }
