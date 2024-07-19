@@ -36,7 +36,6 @@ func main() {
 	}
   log.Printf("\nMessage : %v", subscribeResponse.GetMessage())
 
-
   //// GETLASTBLOCK
 	getLastBlockResponse, err := grpc_client.GetLastBlock(ctx, &protobuf.Empty{})
 	if err != nil {
@@ -45,9 +44,16 @@ func main() {
   log.Printf("\nBlockInfo :\n\tHash : %v\n\tBlock Number : %d\n\tPrevious Block Hash : %v", getLastBlockResponse.GetBlockHash(), getLastBlockResponse.GetBlockNumber(), getLastBlockResponse.GetPreviousBlockHash())
 
   //// ADD TRANSACTION
-	addTransactionResponse, err := grpc_client.AddTransaction(ctx, &protobuf.Transaction{Sender: uuid, Receiver: "7767286809234675", Amount: 0, Data: "Super je trouve"})
+	addTransactionResponse, err := grpc_client.AddTransaction(ctx, &protobuf.Transaction{Sender: uuid, Receiver: "7767286809234675", Amount: 0, Data: "Plutôt bonnard à mon humble avis"})
 	if err != nil {
 		log.Fatalf("AddTransaction Error: %v", err)
 	}
   log.Printf("\nSuccess sending transaction %v", addTransactionResponse)
+
+  //// BAKE BLOCK
+  bakeBlockResponse, err := grpc_client.BakeBlock(ctx, &protobuf.BakeRequest{Uuid: uuid})
+	if err != nil {
+		log.Fatalf("Subscribe Error: %v", err)
+	}
+  log.Printf("\nUuid : %v\nMessage : %v", bakeBlockResponse.GetUuid(), bakeBlockResponse.GetMessage())
 }
